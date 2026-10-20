@@ -44,25 +44,24 @@
       <div class="intro">
         <p>
           I'm Megh, a Computer Science student at Rowan. Most of what I've built wasn't for a
-          grade. It was for a small manufacturer that needed to know how much stock it had,
-          for an assembly line that needed parts counted, and for a lab instrument whose
-          software stopped at 40 readings. I like the problems where the code has to talk to
-          something real: a database, a camera, a serial port.
+          grade. It was in an effort to solve what i thought were everyday problems in the real world for small businesses.
+          Why? Since most of my family members are small busiiness owners i would love for everyone like them to have access to 
+          software that is affordable and solves the issues that most other developers overlook or overcharge for.
+          I like the problems where the code has to talk to something real: a database, a camera, a serial port.
         </p>
         <p>
           Working on those systems is also how I got interested in security. Once your code
           touches a production database or a piece of hardware, you start asking who else can
-          reach it. Next, I want an internship in cybersecurity, where I can learn to defend
+          reach it. As a bussiness owner you wouldn't want a unknown person getting access to
+          data about your business that is supposed to stay secure, this led me to develop an interest in Cybersecurity.
+          Next, I want work in the field cybersecurity, where I can learn to defend
           the kinds of systems I've been building.
         </p>
-        <!-- EDIT: confirm the kind of role you're targeting (SOC, security engineering, IT security…). -->
       </div>
       <div class="cta">
         <a class="btn primary" href="mailto:meghpatel28@icloud.com">Email me</a>
-        <a class="btn" href="https://github.com/YOUR-GITHUB-USERNAME" target="_blank" rel="noopener">GitHub</a>
-        <!-- EDIT: replace YOUR-GITHUB-USERNAME (also in the Contact section). -->
+        <a class="btn" href="https://github.com/meghp28" target="_blank" rel="noopener">GitHub</a>
         <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
-        <!-- EDIT: put your resume in the repo as resume.pdf, or this link will 404. -->
       </div>
     </section>
 
@@ -76,29 +75,31 @@
       <!-- Project 1 -->
       <article class="project">
         <header class="project-head">
-          <h3>Multi-Site Inventory System — INS Products</h3>
+          <h3>Multi-Site Inventory System</h3>
           <p class="stack">Python · Streamlit · PostgreSQL (Supabase) · psycopg2 · Git</p>
         </header>
         <div class="project-body">
           <div class="block">
             <h4>What it is</h4>
             <p>
-              INS Products makes pipeline pigging studs and sells them from a warehouse in
-              Berlin, NJ and through Amazon in the US and Canada. Stock was tracked by hand.
-              I built a web app the team uses to see inventory at every site and to log sales,
-              transfers between sites, and restocks.
+              I started with a simple question, how do small business owners, who may not be able to squeeze 
+              Quickbooks into their budgets, keep a track of their inventory?
+              There seemed to be no clear answer to this question. You either have to pay extraordinary amounts of money 
+              for subscriptions for inventory management software or do it manually in an excel workbook.
+              To try and solve this I built a web app the allows you to see inventory at multiple sites and to log sales,
+              transfers between sites, and restocks. On top of this, the user can also run reports 
+              for convinience so they don't have to export any data to another app.
             </p>
           </div>
           <div class="block">
             <h4>What was hard</h4>
             <p>
-              Three locations means every unit has to be counted exactly once. A transfer from
-              the warehouse to Amazon is a decrease in one place and an increase in another, and
+              Multiple locations means every unit has to be counted exactly once. A transfer from
+              the warehouse to an Amazon site is a decrease in one place and an increase in another, and
               if those two writes ever disagree, the numbers drift. The other hard part was the
-              past: years of history lived in Excel, and the app wasn't useful until that history
-              was in the database with the right dates.
+              past: say the business owner wants years of history that lived in Excel,
+              and the app wouldn't be useful until that history was in the database with the right dates.
             </p>
-            <!-- EDIT: rewrite in your voice. Name the moment you realized the design had to change. -->
           </div>
           <div class="block">
             <h4>What I did</h4>
@@ -135,6 +136,7 @@
               the one I already saw" as it moves. I used centroid tracking to follow each object
               across frames and count it when it crosses a line. Accuracy is still the open
               problem: parts that touch or overlap can merge into one blob.
+              The training required for the accuracy to be high enough is extremely large.
             </p>
             <!-- EDIT: rewrite in your voice. Which failure case bothered you most? -->
           </div>
@@ -144,53 +146,14 @@
               <li>Built the detection pipeline in OpenCV and the tracking and counting logic on top of it.</li>
               <li>Served the feed and the count through a small Flask app.</li>
               <li>Tuned it for accuracy on the real line, and I'm now testing a fine-tuned YOLOv8 model to replace the classic detection step.</li>
+              <li>It is still a work in progress.</li>
             </ul>
           </div>
           <!-- EDIT: if there's a public repo, add: <p class="links"><a href="...">Source on GitHub →</a></p> -->
         </div>
       </article>
 
-      <!-- Project 3 -->
-      <article class="project">
-        <header class="project-head">
-          <h3>Temperature Bath Calibration Tooling</h3>
-          <p class="stack">RS-485 · Modbus RTU · Excel · Delphi (legacy) · PID controllers</p>
-        </header>
-        <div class="project-body">
-          <div class="block">
-            <h4>What it is</h4>
-            <p>
-              Tooling for a Fluidized Temperature Bath from Accurate Thermal Systems, an
-              instrument used to calibrate temperature sensors. The bath's original Windows
-              software, from around 2020, stops collecting after 40 data points and has no chart.
-              With the owner's permission, I'm working on extending it.
-            </p>
-          </div>
-          <div class="block">
-            <h4>What was hard</h4>
-            <p>
-              There was no documentation for how the software talks to the bath. I had to work
-              it out by testing: the bath's PID controller sits on an RS-485 bus behind an
-              FTDI USB adapter, and the original program speaks Modbus RTU to it. Getting the
-              port, baud rate, and parity exactly right (COM3, 9600 baud, 8 data bits, even
-              parity, 1 stop bit) was the difference between clean readings and silence.
-            </p>
-            <!-- EDIT: rewrite in your voice. -->
-          </div>
-          <div class="block">
-            <h4>What I did</h4>
-            <ul>
-              <li>Confirmed the serial and Modbus settings by testing against the original software and hardware.</li>
-              <li>Built an Excel workbook that calculates the bath's low and high offset parameters (OTFL/OTFH) and gives a pass/fail result for each calibration.</li>
-              <li>Started modifying the legacy Delphi app to remove the 40-point cap and add a temperature-over-time chart.</li>
-              <li>Turned the product manuals into two client-facing slide decks for the bath's product lines.</li>
-            </ul>
-            <!-- EDIT: update the Delphi line once the change is finished. -->
-          </div>
-        </div>
-      </article>
-
-      <!-- More work: short list -->
+            <!-- More work: short list -->
       <div class="section-head" style="margin-top:48px">
         <h2 style="font-size:1.3rem">More work</h2>
       </div>
@@ -219,10 +182,10 @@
       </div>
       <div class="beyond-grid">
         <div class="note">
-          <h3>The office's IT person</h3>
+          <h3>The House's IT person</h3>
           <p>
-            At work I end up fixing whatever's broken: SMB file sharing between two PCs that
-            refused to see each other, DHCP reservations on the router, moving QuickBooks to a
+            At home I end up fixing whatever's broken: SMB file sharing between two PCs that
+            refused to see each other, DHCP reservations on the router, helping to move QuickBooks to a
             client-server setup, and email backups. Every fix taught me a bit more about how
             Windows networks really behave.
           </p>
@@ -232,19 +195,19 @@
           <p>
             When my laptop slowed down, I traced it to a background process
             (<code>WorkloadsSessionHost.exe</code>) tied to Windows' Copilot+ and Recall
-            features and shut it off. I like knowing what's running on my machine and why.
+            features and shut it off. Manufactures preloading computers with unnessacery applications 
+            stops your computer from reaching it's maximum performance.
           </p>
         </div>
         <div class="note">
           <h3>Small tools for repetitive work</h3>
           <p>
-            I write Excel Office Scripts in TypeScript to clean CSV exports: removing duplicates,
+            I wrote Excel Office Scripts in TypeScript to clean CSV exports: removing duplicates,
             filtering by whole-word keyword matches, and sorting rows into categories. Nobody
-            asked for them. I got tired of doing it by hand.
+            asked for them. I got tired of doing it by hand. Why not automate using code if we can!
           </p>
         </div>
       </div>
-      <!-- EDIT: these are drafts from things you've told me about. Rewrite them, or swap in something you care about more. -->
     </section>
 
     <!-- ============ SKILLS ============ -->
@@ -264,7 +227,7 @@
         </div>
         <div class="skill-row">
           <h3>Systems &amp; networking</h3>
-          <p>GCP virtual machines, bastion host setup, rsyslog, Windows networking (SMB, DHCP), serial communication (RS-485, Modbus RTU). <span class="where">GCP build, temperature bath</span></p>
+          <p>GCP virtual machines, bastion host setup, rsyslog, Windows networking (SMB, DHCP), serial communication (RS-485, Modbus RTU). <span class="where">Temperature bath</span></p>
         </div>
         <div class="skill-row">
           <h3>Security</h3>
@@ -297,7 +260,7 @@
       <p class="contact-links">
         <a href="mailto:meghpatel28@icloud.com">meghpatel28@icloud.com</a>
         <span aria-hidden="true">·</span>
-        <a href="https://github.com/YOUR-GITHUB-USERNAME" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/meghp28" target="_blank" rel="noopener">GitHub</a>
         <!-- EDIT: replace YOUR-GITHUB-USERNAME. -->
       </p>
     </section>
