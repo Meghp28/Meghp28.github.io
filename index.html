@@ -18,8 +18,8 @@
       The project facts come from work you've described; the wording is a DRAFT.
       Rewrite each paragraph the way you'd explain it to a smart stranger.
     - Search this file for "EDIT:" to find every spot that needs your input.
-    - Two things MUST be fixed before publishing: your GitHub username (3 places)
-      and resume.pdf (add it to the repo).
+    - GitHub username: done (meghp28).
+    - resume.pdf MUST be added to the repo before publishing, or the two resume links will 404.
   -->
 
   <header class="site-header">
@@ -44,17 +44,17 @@
       <div class="intro">
         <p>
           I'm Megh, a Computer Science student at Rowan. Most of what I've built wasn't for a
-          grade. It was in an effort to solve what i thought were everyday problems in the real world for small businesses.
-          Why? Since most of my family members are small busiiness owners i would love for everyone like them to have access to 
+          grade. It was an effort to solve what I saw as everyday, real-world problems for small businesses.
+          Why? Most of my family members are small business owners, and I would love for everyone like them to have access to
           software that is affordable and solves the issues that most other developers overlook or overcharge for.
           I like the problems where the code has to talk to something real: a database, a camera, a serial port.
         </p>
         <p>
           Working on those systems is also how I got interested in security. Once your code
           touches a production database or a piece of hardware, you start asking who else can
-          reach it. As a bussiness owner you wouldn't want a unknown person getting access to
-          data about your business that is supposed to stay secure, this led me to develop an interest in Cybersecurity.
-          Next, I want work in the field cybersecurity, where I can learn to defend
+          reach it. As a business owner, you wouldn't want an unknown person getting access to
+          data about your business that is supposed to stay secure. That is what led me to develop an interest in cybersecurity.
+          Next, I want to work in the cybersecurity field, where I can learn to defend
           the kinds of systems I've been building.
         </p>
       </div>
@@ -82,13 +82,13 @@
           <div class="block">
             <h4>What it is</h4>
             <p>
-              I started with a simple question, how do small business owners, who may not be able to squeeze 
-              Quickbooks into their budgets, keep a track of their inventory?
-              There seemed to be no clear answer to this question. You either have to pay extraordinary amounts of money 
-              for subscriptions for inventory management software or do it manually in an excel workbook.
-              To try and solve this I built a web app the allows you to see inventory at multiple sites and to log sales,
-              transfers between sites, and restocks. On top of this, the user can also run reports 
-              for convinience so they don't have to export any data to another app.
+              I started with a simple question: how do small business owners who can't squeeze
+              QuickBooks into their budgets keep track of their inventory?
+              There seemed to be no clear answer to this question. You either pay huge amounts of money
+              for inventory management subscriptions or track everything by hand in an Excel workbook.
+              To solve this, I built a web app that lets you to see inventory at multiple sites and to log sales,
+              transfers between sites, and restocks. On top of that, users can run reports
+              right in the app, so they don't have to export data to another program.
             </p>
           </div>
           <div class="block">
@@ -97,8 +97,8 @@
               Multiple locations means every unit has to be counted exactly once. A transfer from
               the warehouse to an Amazon site is a decrease in one place and an increase in another, and
               if those two writes ever disagree, the numbers drift. The other hard part was the
-              past: say the business owner wants years of history that lived in Excel,
-              and the app wouldn't be useful until that history was in the database with the right dates.
+              past: a business owner may have years of history living in Excel,
+              and the app isn't useful until that history is in the database with the right dates.
             </p>
           </div>
           <div class="block">
@@ -136,7 +136,7 @@
               the one I already saw" as it moves. I used centroid tracking to follow each object
               across frames and count it when it crosses a line. Accuracy is still the open
               problem: parts that touch or overlap can merge into one blob.
-              The training required for the accuracy to be high enough is extremely large.
+              Getting accuracy high enough takes a very large amount of training data.
             </p>
             <!-- EDIT: rewrite in your voice. Which failure case bothered you most? -->
           </div>
@@ -153,19 +153,55 @@
         </div>
       </article>
 
-            <!-- More work: short list -->
-      <div class="section-head" style="margin-top:48px">
-        <h2 style="font-size:1.3rem">More work</h2>
+      <!-- Project 3 -->
+      <article class="project">
+        <header class="project-head">
+          <h3>Real-Time ASL Translator</h3>
+          <p class="stack">Python · webcam video · hand-landmark tracking · classifier</p>
+          <!-- EDIT: replace the stack line with the actual libraries you used (for example MediaPipe, OpenCV, scikit-learn, TensorFlow, WebRTC). -->
+        </header>
+        <div class="project-body">
+          <div class="block">
+            <h4>What it is</h4>
+            <p>
+              A sponsored project that reads American Sign Language from a webcam and turns it
+              into on-screen text in real time. The goal is to make a conversation between a
+              signer and someone who doesn't know ASL possible without an interpreter in the room.
+            </p>
+            <!-- EDIT: check that the goal sentence matches how your sponsors described the project. -->
+          </div>
+          <div class="block">
+            <h4>What was hard</h4>
+            <p>
+              The requirements changed partway through. We started with a translator that reads
+              signs from a webcam, and then the sponsors asked for a video-calling interface that
+              translates while the call is happening. That meant the recognition had to keep up
+              with a live video stream instead of working on its own.
+            </p>
+            <!-- EDIT: rewrite in your voice. What was the hardest part for you personally? -->
+          </div>
+          <div class="block">
+            <h4>What I did</h4>
+            <ul>
+              <li>Used hand-tracking landmarks from the webcam feed as the input to a classifier that predicts which sign is being made.</li>
+              <li>Showed the predicted signs as text on screen, live.</li>
+              <li>Adapted the project when the sponsors' requirements shifted to a video-calling interface with live translation.</li>
+              <li>It is still a work in progress.</li>
+            </ul>
+            <!-- EDIT: if this is a team project, say which parts were yours. -->
+          </div>
+        </div>
+      </article>
+
+      <!-- More work: short list -->
+      <div class="section-head sub">
+        <h2>More work</h2>
       </div>
       <!-- EDIT: delete any item below that isn't yours, and rewrite the rest in your voice. -->
       <div class="skills">
         <div class="skill-row">
           <h3>Multi-VM network on GCP</h3>
           <p>A course build with separate bastion, web, API, and database servers, running Apache, PHP, and MariaDB. Logs from every machine forward to one place with rsyslog. The interesting part was deciding which machine is allowed to reach which. <span class="where">Cloud networking</span></p>
-        </div>
-        <div class="skill-row">
-          <h3>Real-time ASL translator</h3>
-          <p>A sponsored project that reads American Sign Language from a webcam and shows it as text, using hand landmarks fed into a classifier. Midway through, the sponsors' requirements changed to a video-calling interface that translates during the call. <span class="where">Computer vision</span></p>
         </div>
         <div class="skill-row">
           <h3>"Amazon 2" database</h3>
@@ -182,7 +218,7 @@
       </div>
       <div class="beyond-grid">
         <div class="note">
-          <h3>The House's IT person</h3>
+          <h3>The house IT person</h3>
           <p>
             At home I end up fixing whatever's broken: SMB file sharing between two PCs that
             refused to see each other, DHCP reservations on the router, helping to move QuickBooks to a
@@ -195,8 +231,8 @@
           <p>
             When my laptop slowed down, I traced it to a background process
             (<code>WorkloadsSessionHost.exe</code>) tied to Windows' Copilot+ and Recall
-            features and shut it off. Manufactures preloading computers with unnessacery applications 
-            stops your computer from reaching it's maximum performance.
+            features and shut it off. When manufacturers preload computers with unnecessary applications,
+            your computer can't reach its full performance.
           </p>
         </div>
         <div class="note">
@@ -204,7 +240,7 @@
           <p>
             I wrote Excel Office Scripts in TypeScript to clean CSV exports: removing duplicates,
             filtering by whole-word keyword matches, and sorting rows into categories. Nobody
-            asked for them. I got tired of doing it by hand. Why not automate using code if we can!
+            asked for them. I got tired of doing it by hand. Why do it by hand when code can do it?
           </p>
         </div>
       </div>
@@ -219,7 +255,7 @@
       <div class="skills">
         <div class="skill-row">
           <h3>Programming</h3>
-          <p>Python (Streamlit, Flask, pandas, OpenCV, psycopg2), Java (multithreading), TypeScript (Office Scripts), Prolog. <span class="where">Inventory system, parts counter</span></p>
+          <p>Python (Streamlit, Flask, pandas, OpenCV, psycopg2), Java (multithreading), TypeScript (Office Scripts), Prolog. <span class="where">Inventory system, parts counter, ASL translator</span></p>
         </div>
         <div class="skill-row">
           <h3>Databases</h3>
@@ -261,7 +297,6 @@
         <a href="mailto:meghpatel28@icloud.com">meghpatel28@icloud.com</a>
         <span aria-hidden="true">·</span>
         <a href="https://github.com/meghp28" target="_blank" rel="noopener">GitHub</a>
-        <!-- EDIT: replace YOUR-GITHUB-USERNAME. -->
       </p>
     </section>
 
