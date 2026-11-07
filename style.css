@@ -1,13 +1,13 @@
 /* ---------- Theme ---------- */
 :root {
-  --bg: #f7f5f0;
+  --bg: #ffffff;
   --surface: #ffffff;
-  --ink: #1b1d22;
-  --muted: #5b606b;
-  --line: #e2ded4;
+  --ink: #1f2937;
+  --muted: #4b5563;
+  --line: #e5e7eb;
   --accent: #0f6b5c;
-  --accent-soft: #e3f0ec;
-  --code-bg: #efece5;
+  --accent-soft: #eef6f3;
+  --code-bg: #f3f4f6;
 
   --serif: "Fraunces", Georgia, "Times New Roman", serif;
   --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -15,19 +15,6 @@
 
   --max: 880px;
   --radius: 10px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #121417;
-    --surface: #1a1d22;
-    --ink: #e9e7e2;
-    --muted: #a2a7b1;
-    --line: #2b2f36;
-    --accent: #5cc4ae;
-    --accent-soft: #17302b;
-    --code-bg: #23272e;
-  }
 }
 
 /* ---------- Base ---------- */
@@ -161,11 +148,14 @@ h1, h2, h3 {
 }
 .label { color: var(--accent); margin: 0; }
 .section-head h2 { font-size: 1.75rem; }
+.section-head.sub { margin-top: 48px; }
+.section-head.sub h2 { font-size: 1.3rem; }
 
 /* ---------- Projects ---------- */
 .project {
   background: var(--surface);
   border: 1px solid var(--line);
+  box-shadow: 0 1px 3px rgba(17, 24, 39, 0.06);
   border-radius: var(--radius);
   padding: 30px 32px;
   margin-bottom: 28px;
