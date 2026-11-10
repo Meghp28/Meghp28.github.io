@@ -12,275 +12,300 @@
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="brand" href="#top">Megh Patel</a>
-      <nav class="nav" aria-label="Main">
-        <a href="#work">Work</a>
-        <a href="#beyond">Beyond class</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+  <div class="layout">
 
-  <main id="top">
+    <!-- ============ SIDEBAR (stays in place on desktop) ============ -->
+    <aside class="sidebar">
+      <div class="sidebar-inner">
+        <a class="brand" href="#top">Megh Patel</a>
+        <p class="eyebrow">Computer Science · Rowan University · 2027</p>
+        <h1>I build software for the people down the hall.</h1>
+        <!-- EDIT: rewrite the headline in your own words if it doesn't sound like you. -->
 
-    <!-- ============ INTRO ============ -->
-    <section class="hero wrap">
-      <p class="eyebrow">Computer Science · Rowan University · 2027</p>
-      <h1>I build software for the people down the hall.</h1>
-      <!-- EDIT: rewrite the headline in your own words if it doesn't sound like you. -->
-      <div class="intro">
-        <p>
-          I'm Megh, a Computer Science student at Rowan. Most of what I've built wasn't for a
-          grade. It was an effort to solve what I saw as everyday, real-world problems for small businesses.
-          Why? Most of my family members are small business owners, and I would love for everyone like them to have access to
-          software that is affordable and solves the issues that most other developers overlook or overcharge for.
-          I like the problems where the code has to talk to something real: a database, a camera, a serial port.
+        <nav class="nav" aria-label="Main">
+          <a href="#work">Work</a>
+          <a href="#beyond">Beyond class</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="cta">
+          <a class="btn primary" href="mailto:meghpatel28@icloud.com">Email me</a>
+          <a class="btn" href="https://github.com/meghp28" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ============ MAIN CONTENT (scrolls) ============ -->
+    <main id="top" class="content">
+
+      <!-- ============ INTRO ============ -->
+      <section class="about">
+        <div class="intro">
+          <p>
+            I'm Megh, a Computer Science student at Rowan. Most of what I've built wasn't for a
+            grade. It was an effort to solve what I saw as everyday, real-world problems for small businesses.
+            Why? Most of my family members are small business owners, and I would love for everyone like them to have access to
+            software that is affordable and solves the issues that most other developers overlook or overcharge for.
+            I like the problems where the code has to talk to something real: a database, a camera, a serial port.
+          </p>
+          <p>
+            Working on those systems is also how I got interested in security. Once your code
+            touches a production database or a piece of hardware, you start asking who else can
+            reach it. As a business owner, you wouldn't want an unknown person getting access to
+            data about your business that is supposed to stay secure. That is what led me to develop an interest in cybersecurity.
+            Next, I want to work in the cybersecurity field, where I can learn to defend
+            the kinds of systems I've been building.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ SELECTED WORK ============ -->
+      <section id="work" class="section">
+        <div class="section-head">
+          <p class="label">01</p>
+          <h2>Selected work</h2>
+        </div>
+
+        <!-- Project 1 -->
+        <article class="project">
+          <header class="project-head">
+            <h3>Multi-Site Inventory System</h3>
+            <p class="stack">Python · Streamlit · PostgreSQL (Supabase) · psycopg2 · Git</p>
+          </header>
+          <div class="project-body">
+            <div class="block">
+              <h4>What it is</h4>
+              <p>
+                I started with a simple question: how do small business owners who can't squeeze
+                QuickBooks into their budgets keep track of their inventory?
+                There seemed to be no clear answer to this question. You either pay huge amounts of money
+                for inventory management subscriptions or track everything by hand in an Excel workbook.
+                To solve this, I built a web app that lets you to see inventory at multiple sites and to log sales,
+                transfers between sites, and restocks. On top of that, users can run reports
+                right in the app, so they don't have to export data to another program.
+              </p>
+            </div>
+            <div class="block">
+              <h4>What was hard</h4>
+              <p>
+                Multiple locations means every unit has to be counted exactly once. A transfer from
+                the warehouse to an Amazon site is a decrease in one place and an increase in another, and
+                if those two writes ever disagree, the numbers drift. The other hard part was the
+                past: a business owner may have years of history living in Excel,
+                and the app isn't useful until that history is in the database with the right dates.
+              </p>
+            </div>
+            <div class="block">
+              <h4>What I did</h4>
+              <ul>
+                <li>Built the app from scratch in Streamlit, starting on SQLite and moving to a hosted PostgreSQL database on Supabase.</li>
+                <li>Modeled sales, transfers, adjustments, and restock history, with dates entered by the user so late entries land on the right day.</li>
+                <li>Wrote import scripts that loaded the historical Excel data for sales, transfers, and adjustments, then moved the app onto production data.</li>
+                <li>Debugged a stuck database lock by finding the blocking session and ending it with <code>pg_terminate_backend()</code>.</li>
+                <li>Found a database password that had been exposed and flagged it for rotation. That was my first real security incident, and a small one.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project">
+          <header class="project-head">
+            <h3>Visual Parts Counter</h3>
+            <p class="stack">Python · OpenCV · Flask · centroid tracking</p>
+          </header>
+          <div class="project-body">
+            <div class="block">
+              <h4>What it is</h4>
+              <p>
+                A camera system that counts parts as they move along an assembly line, with a
+                Flask page that shows the live count.
+              </p>
+            </div>
+            <div class="block">
+              <h4>What was hard</h4>
+              <p>
+                Spotting a part in one frame is the easy half. The hard half is counting it once.
+                The same part shows up in dozens of frames, so the system has to recognize "that's
+                the one I already saw" as it moves. I used centroid tracking to follow each object
+                across frames and count it when it crosses a line. Accuracy is still the open
+                problem: parts that touch or overlap can merge into one blob.
+                Getting accuracy high enough takes a very large amount of training data.
+              </p>
+              <!-- EDIT: rewrite in your voice. Which failure case bothered you most? -->
+            </div>
+            <div class="block">
+              <h4>What I did</h4>
+              <ul>
+                <li>Built the detection pipeline in OpenCV and the tracking and counting logic on top of it.</li>
+                <li>Served the feed and the count through a small Flask app.</li>
+                <li>Tuned it for accuracy on the real line, and I'm now testing a fine-tuned YOLOv8 model to replace the classic detection step.</li>
+                <li>It is still a work in progress.</li>
+              </ul>
+            </div>
+            <!-- EDIT: if there's a public repo, add: <p class="links"><a href="...">Source on GitHub →</a></p> -->
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project">
+          <header class="project-head">
+            <h3>Real-Time ASL Translator</h3>
+            <p class="stack">Python · webcam video · hand-landmark tracking · classifier · React · JavaScript</p>
+            <!-- EDIT: replace the stack line with the actual libraries you used (for example MediaPipe, OpenCV, scikit-learn, TensorFlow, WebRTC). -->
+          </header>
+          <div class="project-body">
+            <div class="block">
+              <h4>What it is</h4>
+              <p>
+                A sponsored project for my Software Engineering class that reads American Sign Language from a webcam and turns it
+                into on-screen text in real time. The goal is to make a conversation between a
+                signer and someone who doesn't know ASL possible without an interpreter in the room.
+              </p>
+              <!-- EDIT: check that the goal sentence matches how your sponsors described the project. -->
+            </div>
+            <div class="block">
+              <h4>What was hard</h4>
+              <p>
+                The requirements changed partway through. We started with a translator that reads
+                signs from a webcam, and then the sponsors asked for a video-calling interface that
+                translates while the call is happening. That meant the recognition had to keep up
+                with a live video stream instead of working on its own.
+              </p>
+              <!-- EDIT: rewrite in your voice. What was the hardest part for you personally? -->
+            </div>
+            <div class="block">
+              <h4>What I did</h4>
+              <ul>
+                <li>Used hand-tracking landmarks from the webcam feed as the input to a classifier that predicts which sign is being made.</li>
+                <li>Showed the predicted signs as text on screen, live.</li>
+                <li>Adapted the project when the sponsors' requirements shifted to a video-calling interface with live translation.</li>
+                <li>It is still a work in progress.</li>
+              </ul>
+              <!-- EDIT: if this is a team project, say which parts were yours. -->
+            </div>
+          </div>
+        </article>
+
+        <!-- More work: short list -->
+        <div class="section-head sub">
+          <h2>More work</h2>
+        </div>
+      </section>
+
+      <!-- ============ BEYOND CLASS ============ -->
+      <section id="beyond" class="section">
+        <div class="section-head">
+          <p class="label">02</p>
+          <h2>Beyond class</h2>
+        </div>
+        <div class="beyond-grid">
+          <div class="note">
+            <h3>The house IT person</h3>
+            <p>
+              At home I end up fixing whatever's broken: SMB file sharing between two PCs that
+              refused to see each other, DHCP reservations on the router, helping to move QuickBooks to a
+              client-server setup, and email backups. Every fix taught me a bit more about how
+              Windows networks really behave.
+            </p>
+          </div>
+          <div class="note">
+            <h3>Finding what's eating my RAM</h3>
+            <p>
+              When my laptop slowed down, I traced it to a background process
+              (<code>WorkloadsSessionHost.exe</code>) tied to Windows' Copilot+ and Recall
+              features and shut it off. When manufacturers preload computers with unnecessary applications,
+              your computer can't reach its full performance.
+            </p>
+          </div>
+          <div class="note">
+            <h3>Small tools for repetitive work</h3>
+            <p>
+              I wrote Excel Office Scripts in TypeScript to clean CSV exports: removing duplicates,
+              filtering by whole-word keyword matches, and sorting rows into categories. Nobody
+              asked for them. I got tired of doing it by hand. Why do it by hand when code can do it?
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SKILLS ============ -->
+      <section id="skills" class="section">
+        <div class="section-head">
+          <p class="label">03</p>
+          <h2>Skills &amp; background</h2>
+        </div>
+        <div class="skills">
+          <div class="skill-row">
+            <h3>Programming</h3>
+            <p>Python (Streamlit, Flask, pandas, OpenCV, psycopg2), Java (multithreading), TypeScript (Office Scripts), Prolog. <span class="where">Inventory system, parts counter, ASL translator</span></p>
+          </div>
+          <div class="skill-row">
+            <h3>Databases</h3>
+            <p>PostgreSQL (Supabase), MySQL, SQLite, MariaDB. Schema design, data migration from Excel, debugging locks. <span class="where">Inventory system, Amazon 2</span></p>
+          </div>
+          <div class="skill-row">
+            <h3>Systems &amp; networking</h3>
+            <p>GCP virtual machines, bastion host setup, rsyslog, Windows networking (SMB, DHCP), serial communication (RS-485, Modbus RTU). <span class="where">Temperature bath</span></p>
+          </div>
+          <div class="skill-row">
+            <h3>Security</h3>
+            <p>Credential exposure and rotation, network segmentation with a bastion host, centralized logging. <span class="where">Inventory system, GCP build</span></p>
+            <!-- EDIT: add any security coursework, certifications, or labs you've completed. -->
+          </div>
+          <div class="skill-row">
+            <h3>Education</h3>
+            <p>Rowan University, B.S. Computer Science, expected 2027. Camden County College, Associate in Computer Science, 2025.</p>
+          </div>
+        </div>
+        <p class="resume-line">Full history is in my <a href="resume.pdf" target="_blank" rel="noopener">resume (PDF)</a>.</p>
+      </section>
+
+      <!-- ============ CONTACT ============ -->
+      <section id="contact" class="section contact">
+        <div class="section-head">
+          <p class="label">04</p>
+          <h2>Get in touch</h2>
+        </div>
+        <p class="contact-lead">
+          If you're hiring for a security internship, or you want to talk about any of these
+          projects, email me.
         </p>
-        <p>
-          Working on those systems is also how I got interested in security. Once your code
-          touches a production database or a piece of hardware, you start asking who else can
-          reach it. As a business owner, you wouldn't want an unknown person getting access to
-          data about your business that is supposed to stay secure. That is what led me to develop an interest in cybersecurity.
-          Next, I want to work in the cybersecurity field, where I can learn to defend
-          the kinds of systems I've been building.
+        <p class="contact-links">
+          <a href="mailto:meghpatel28@icloud.com">meghpatel28@icloud.com</a>
+          <span aria-hidden="true">·</span>
+          <a href="https://github.com/meghp28" target="_blank" rel="noopener">GitHub</a>
         </p>
-      </div>
-      <div class="cta">
-        <a class="btn primary" href="mailto:meghpatel28@icloud.com">Email me</a>
-        <a class="btn" href="https://github.com/meghp28" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============ SELECTED WORK ============ -->
-    <section id="work" class="section wrap">
-      <div class="section-head">
-        <p class="label">01</p>
-        <h2>Selected work</h2>
-      </div>
+      <footer class="site-footer">
+        <p>© 2026 Megh Patel</p>
+      </footer>
 
-      <!-- Project 1 -->
-      <article class="project">
-        <header class="project-head">
-          <h3>Multi-Site Inventory System</h3>
-          <p class="stack">Python · Streamlit · PostgreSQL (Supabase) · psycopg2 · Git</p>
-        </header>
-        <div class="project-body">
-          <div class="block">
-            <h4>What it is</h4>
-            <p>
-              I started with a simple question: how do small business owners who can't squeeze
-              QuickBooks into their budgets keep track of their inventory?
-              There seemed to be no clear answer to this question. You either pay huge amounts of money
-              for inventory management subscriptions or track everything by hand in an Excel workbook.
-              To solve this, I built a web app that lets you to see inventory at multiple sites and to log sales,
-              transfers between sites, and restocks. On top of that, users can run reports
-              right in the app, so they don't have to export data to another program.
-            </p>
-          </div>
-          <div class="block">
-            <h4>What was hard</h4>
-            <p>
-              Multiple locations means every unit has to be counted exactly once. A transfer from
-              the warehouse to an Amazon site is a decrease in one place and an increase in another, and
-              if those two writes ever disagree, the numbers drift. The other hard part was the
-              past: a business owner may have years of history living in Excel,
-              and the app isn't useful until that history is in the database with the right dates.
-            </p>
-          </div>
-          <div class="block">
-            <h4>What I did</h4>
-            <ul>
-              <li>Built the app from scratch in Streamlit, starting on SQLite and moving to a hosted PostgreSQL database on Supabase.</li>
-              <li>Modeled sales, transfers, adjustments, and restock history, with dates entered by the user so late entries land on the right day.</li>
-              <li>Wrote import scripts that loaded the historical Excel data for sales, transfers, and adjustments, then moved the app onto production data.</li>
-              <li>Debugged a stuck database lock by finding the blocking session and ending it with <code>pg_terminate_backend()</code>.</li>
-              <li>Found a database password that had been exposed and flagged it for rotation. That was my first real security incident, and a small one.</li>
-            </ul>
-          </div>
-        </div>
-      </article>
+    </main>
+  </div>
 
-      <!-- Project 2 -->
-      <article class="project">
-        <header class="project-head">
-          <h3>Visual Parts Counter</h3>
-          <p class="stack">Python · OpenCV · Flask · centroid tracking</p>
-        </header>
-        <div class="project-body">
-          <div class="block">
-            <h4>What it is</h4>
-            <p>
-              A camera system that counts parts as they move along an assembly line, with a
-              Flask page that shows the live count.
-            </p>
-          </div>
-          <div class="block">
-            <h4>What was hard</h4>
-            <p>
-              Spotting a part in one frame is the easy half. The hard half is counting it once.
-              The same part shows up in dozens of frames, so the system has to recognize "that's
-              the one I already saw" as it moves. I used centroid tracking to follow each object
-              across frames and count it when it crosses a line. Accuracy is still the open
-              problem: parts that touch or overlap can merge into one blob.
-              Getting accuracy high enough takes a very large amount of training data.
-            </p>
-            <!-- EDIT: rewrite in your voice. Which failure case bothered you most? -->
-          </div>
-          <div class="block">
-            <h4>What I did</h4>
-            <ul>
-              <li>Built the detection pipeline in OpenCV and the tracking and counting logic on top of it.</li>
-              <li>Served the feed and the count through a small Flask app.</li>
-              <li>Tuned it for accuracy on the real line, and I'm now testing a fine-tuned YOLOv8 model to replace the classic detection step.</li>
-              <li>It is still a work in progress.</li>
-            </ul>
-          </div>
-          <!-- EDIT: if there's a public repo, add: <p class="links"><a href="...">Source on GitHub →</a></p> -->
-        </div>
-      </article>
-
-      <!-- Project 3 -->
-      <article class="project">
-        <header class="project-head">
-          <h3>Real-Time ASL Translator</h3>
-          <p class="stack">Python · webcam video · hand-landmark tracking · classifier · React · JavaScript</p>
-          <!-- EDIT: replace the stack line with the actual libraries you used (for example MediaPipe, OpenCV, scikit-learn, TensorFlow, WebRTC). -->
-        </header>
-        <div class="project-body">
-          <div class="block">
-            <h4>What it is</h4>
-            <p>
-              A sponsored project for my Software Engineering class that reads American Sign Language from a webcam and turns it
-              into on-screen text in real time. The goal is to make a conversation between a
-              signer and someone who doesn't know ASL possible without an interpreter in the room.
-            </p>
-            <!-- EDIT: check that the goal sentence matches how your sponsors described the project. -->
-          </div>
-          <div class="block">
-            <h4>What was hard</h4>
-            <p>
-              The requirements changed partway through. We started with a translator that reads
-              signs from a webcam, and then the sponsors asked for a video-calling interface that
-              translates while the call is happening. That meant the recognition had to keep up
-              with a live video stream instead of working on its own.
-            </p>
-            <!-- EDIT: rewrite in your voice. What was the hardest part for you personally? -->
-          </div>
-          <div class="block">
-            <h4>What I did</h4>
-            <ul>
-              <li>Used hand-tracking landmarks from the webcam feed as the input to a classifier that predicts which sign is being made.</li>
-              <li>Showed the predicted signs as text on screen, live.</li>
-              <li>Adapted the project when the sponsors' requirements shifted to a video-calling interface with live translation.</li>
-              <li>It is still a work in progress.</li>
-            </ul>
-            <!-- EDIT: if this is a team project, say which parts were yours. -->
-          </div>
-        </div>
-      </article>
-
-      <!-- More work: short list -->
-      <div class="section-head sub">
-        <h2>More work</h2>
-      </div>
-    </section>
-
-    <!-- ============ BEYOND CLASS ============ -->
-    <section id="beyond" class="section wrap">
-      <div class="section-head">
-        <p class="label">02</p>
-        <h2>Beyond class</h2>
-      </div>
-      <div class="beyond-grid">
-        <div class="note">
-          <h3>The house IT person</h3>
-          <p>
-            At home I end up fixing whatever's broken: SMB file sharing between two PCs that
-            refused to see each other, DHCP reservations on the router, helping to move QuickBooks to a
-            client-server setup, and email backups. Every fix taught me a bit more about how
-            Windows networks really behave.
-          </p>
-        </div>
-        <div class="note">
-          <h3>Finding what's eating my RAM</h3>
-          <p>
-            When my laptop slowed down, I traced it to a background process
-            (<code>WorkloadsSessionHost.exe</code>) tied to Windows' Copilot+ and Recall
-            features and shut it off. When manufacturers preload computers with unnecessary applications,
-            your computer can't reach its full performance.
-          </p>
-        </div>
-        <div class="note">
-          <h3>Small tools for repetitive work</h3>
-          <p>
-            I wrote Excel Office Scripts in TypeScript to clean CSV exports: removing duplicates,
-            filtering by whole-word keyword matches, and sorting rows into categories. Nobody
-            asked for them. I got tired of doing it by hand. Why do it by hand when code can do it?
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ SKILLS ============ -->
-    <section id="skills" class="section wrap">
-      <div class="section-head">
-        <p class="label">03</p>
-        <h2>Skills &amp; background</h2>
-      </div>
-      <div class="skills">
-        <div class="skill-row">
-          <h3>Programming</h3>
-          <p>Python (Streamlit, Flask, pandas, OpenCV, psycopg2), Java (multithreading), TypeScript (Office Scripts), Prolog. <span class="where">Inventory system, parts counter, ASL translator</span></p>
-        </div>
-        <div class="skill-row">
-          <h3>Databases</h3>
-          <p>PostgreSQL (Supabase), MySQL, SQLite, MariaDB. Schema design, data migration from Excel, debugging locks. <span class="where">Inventory system, Amazon 2</span></p>
-        </div>
-        <div class="skill-row">
-          <h3>Systems &amp; networking</h3>
-          <p>GCP virtual machines, bastion host setup, rsyslog, Windows networking (SMB, DHCP), serial communication (RS-485, Modbus RTU). <span class="where">Temperature bath</span></p>
-        </div>
-        <div class="skill-row">
-          <h3>Security</h3>
-          <p>Credential exposure and rotation, network segmentation with a bastion host, centralized logging. <span class="where">Inventory system, GCP build</span></p>
-          <!-- EDIT: add any security coursework, certifications, or labs you've completed. -->
-        </div>
-        <div class="skill-row">
-          <h3>Education</h3>
-          <p>Rowan University, B.S. Computer Science, expected 2027. Camden County College, Associate in Computer Science, 2025.</p>
-        </div>
-      </div>
-      <p class="resume-line">Full history is in my <a href="resume.pdf" target="_blank" rel="noopener">resume (PDF)</a>.</p>
-    </section>
-
-    <!-- ============ CONTACT ============ -->
-    <section id="contact" class="section wrap contact">
-      <div class="section-head">
-        <p class="label">04</p>
-        <h2>Get in touch</h2>
-      </div>
-      <p class="contact-lead">
-        If you're hiring for a security internship, or you want to talk about any of these
-        projects, email me.
-      </p>
-      <p class="contact-links">
-        <a href="mailto:meghpatel28@icloud.com">meghpatel28@icloud.com</a>
-        <span aria-hidden="true">·</span>
-        <a href="https://github.com/meghp28" target="_blank" rel="noopener">GitHub</a>
-      </p>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="wrap">
-      <p>© 2026 Megh Patel</p>
-    </div>
-  </footer>
+  <script>
+    // Highlights the sidebar link for the section you're currently reading.
+    (function () {
+      var links = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
+      if (!('IntersectionObserver' in window)) return;
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          links.forEach(function (link) {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+          });
+        });
+      }, { rootMargin: '-35% 0px -60% 0px' });
+      links.forEach(function (link) {
+        var section = document.querySelector(link.getAttribute('href'));
+        if (section) observer.observe(section);
+      });
+    })();
+  </script>
 
 </body>
 </html>
